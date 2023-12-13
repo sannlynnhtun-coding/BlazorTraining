@@ -1,0 +1,34 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudText>@Response.RespDesp</MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">No</MudButton>
+        <MudButton Color="GetButtonColor()" Variant="MudBlazor.Variant.Filled" OnClick="Submit">Yes</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+
+    [Parameter] public ResponseModel? Response { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    private Color GetButtonColor()
+    {
+        if (Response is null) return Color.Default;
+        var color = Response.RespType switch
+        {
+            EnumRespType.None => Color.Default,
+            EnumRespType.Success => Color.Success,
+            EnumRespType.Information => Color.Info,
+            EnumRespType.Warning => Color.Warning,
+            EnumRespType.Error => Color.Error,
+            EnumRespType.Confirm => Color.Dark,
+            _ => Color.Default
+        };
+        return color;
+    }
+}
