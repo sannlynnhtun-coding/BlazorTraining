@@ -1,3 +1,4 @@
+using BlazorTraining.Api;
 using BlazorTraining.Data;
 using BlazorTraining.Db;
 using BlazorTraining.Services;
@@ -13,6 +14,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddMudServices();
+
+builder.Services.AddTransient<HttpClient>();
+builder.Services.AddTransient<ApiService>();
+
 builder.Services.AddScoped<InjectService>();
 
 builder.Services.AddSingleton<WeatherForecastService>();
