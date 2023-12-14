@@ -24,14 +24,14 @@ namespace BlazorTraining.Api
             if (response.IsSuccessStatusCode)
             {
                 var jsonStr = await response.Content.ReadAsStringAsync();
-                model = JsonConvert.DeserializeObject<T>(jsonStr);
+                model = JsonConvert.DeserializeObject<T>(jsonStr)!;
             }
             else
             {
                 var jsonStr = await response.Content.ReadAsStringAsync();
                 throw new Exception($"Api Error {response.StatusCode} | {jsonStr}");
             }
-            return model;
+            return model!;
         }
 
         public async Task<BlogListResponseModel> GetBlogs(BlogRequestModel requestModel)

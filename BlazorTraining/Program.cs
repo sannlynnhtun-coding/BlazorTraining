@@ -15,8 +15,8 @@ builder.Services.AddServerSideBlazor();
 
 builder.Services.AddMudServices();
 
-builder.Services.AddTransient<HttpClient>();
-builder.Services.AddTransient<ApiService>();
+builder.Services.AddScoped<HttpClient>();
+builder.Services.AddScoped<ApiService>();
 
 builder.Services.AddScoped<InjectService>();
 
