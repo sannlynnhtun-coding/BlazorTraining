@@ -1,0 +1,29 @@
+﻿@page "/datepicker"
+@inject IJSRuntime _jsRuntime
+
+<h3>DatePicker</h3>
+
+<input type="text" id="txtDatePicker" class="date-picker form-control" />
+<button type="button" class="btn btn-success" @onclick="GetDatePickerValue">Submit</button>
+@code {
+    // protected override async Task OnInitializedAsync()
+    // {
+
+    // }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // await _jsRuntime.InvokeVoidAsync("setDatePicker", "#txtDatePicker");
+            await _InjectService.SetDatePicker("#txtDatePicker");
+        }
+    }
+
+    private async Task GetDatePickerValue()
+    {
+        // var result = await _jsRuntime.InvokeAsync<string>("getDatePicker", "#txtDatePicker");
+        var result = await _InjectService.GetDatePicker("#txtDatePicker");
+        await _jsRuntime.InvokeVoidAsync("alert", result);
+    }
+}

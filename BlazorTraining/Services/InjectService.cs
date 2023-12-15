@@ -1,14 +1,17 @@
-﻿using MudBlazor;
+﻿using Microsoft.JSInterop;
+using MudBlazor;
 
 namespace BlazorTraining.Services
 {
     public class InjectService
     {
         private readonly IDialogService _dialogService;
+        private readonly IJSRuntime _jsRuntime;
 
-        public InjectService(IDialogService dialogService)
+        public InjectService(IDialogService dialogService, IJSRuntime jsRuntime)
         {
             _dialogService = dialogService;
+            _jsRuntime = jsRuntime;
         }
 
         public void ShowMessage(ResponseModel reqModel)
@@ -31,6 +34,16 @@ namespace BlazorTraining.Services
             var dialog = await _dialogService.ShowAsync<ConfirmMessageBox>(reqModel.RespType.ToString(), parameters, options);
             var result = await dialog.Result;
             return !result.Canceled;
+        }
+
+        public async Task SetDatePicker(string? id = null)
+        {
+            await _jsRuntime.InvokeVoidAsync("setDatePicker", id);
+        }
+
+        public async Task<string> GetDatePicker(string id)
+        {
+            return await _jsRuntime.InvokeAsync<string>("getDatePicker", id);
         }
     }
 }
