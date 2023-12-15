@@ -6,3 +6,4 @@ global using BlazorTraining.Shared;
 global using BlazorTraining.Pages;
 global using Newtonsoft.Json;
 global using BlazorTraining.Api;
+global using BlazorTraining.StateContainer;

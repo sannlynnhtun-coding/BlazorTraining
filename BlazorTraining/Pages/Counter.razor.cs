@@ -7,6 +7,7 @@
         private void IncrementCount()
         {
             currentCount++;
+            _counterStateContainer.Count = currentCount;
         }
     }
 }

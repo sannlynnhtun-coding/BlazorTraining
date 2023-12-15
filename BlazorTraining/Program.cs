@@ -2,6 +2,7 @@ using BlazorTraining.Api;
 using BlazorTraining.Data;
 using BlazorTraining.Db;
 using BlazorTraining.Services;
+using BlazorTraining.StateContainer;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddMudServices();
+
+builder.Services.AddScoped<CounterStateContainer>();
 
 builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped<ApiService>();

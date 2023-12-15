@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@implements IDisposable
+@inject CounterStateContainer _counterStateContainer
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">BlazorTraining</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -17,6 +19,7 @@
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="counter">
                 <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                <span class="ml-2 badge bg-secondary">@_counterStateContainer.Count</span>
             </NavLink>
         </div>
         <div class="nav-item px-3">
@@ -45,5 +48,15 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    protected override void OnInitialized()
+    {
+        _counterStateContainer.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        _counterStateContainer.OnChange -= StateHasChanged;
     }
 }
