@@ -3,42 +3,42 @@
 
 @if (_formType == EnumFormType.List)
 {
-    <MudButton Variant="MudBlazor.Variant.Filled" StartIcon="@Icons.Material.Filled.Save" OnClick="Create" Color="Color.Success">Create</MudButton>
-    <RadzenDataGrid @ref=@dataGrid
-                    Data="@dataList"
-                    TItem="BlogViewModel"
-                    Count="@rowCount"
-                    AllowPaging="true"
-                    PagerHorizontalAlign="HorizontalAlign.Center"
-                    AllowSorting="true" PageSize="10" LoadData="@LoadData">
-        <Columns>
-            <RadzenDataGridColumn TItem="BlogViewModel" Title="#" Filterable="false" Sortable="false" TextAlign="TextAlign.Center">
-                <Template Context="data">
-                    <MudButton Variant="MudBlazor.Variant.Filled" OnClick="() => Edit(data.Id)" Color="Color.Warning">Edit</MudButton>
-                    <MudButton Variant="MudBlazor.Variant.Filled" OnClick="() => Delete(data.Id)" Color="Color.Error">Delete</MudButton>
-                </Template>
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="BlogViewModel" Property="Id" Title="Blog ID" />
-            <RadzenDataGridColumn TItem="BlogViewModel" Property="Title" Title="Blog Title" />
-            <RadzenDataGridColumn TItem="BlogViewModel" Property="Author" Title="Blog Author" />
-            <RadzenDataGridColumn TItem="BlogViewModel" Property="Content" Title="Blog Content" />
-        </Columns>
-    </RadzenDataGrid>
+	<MudButton Variant="MudBlazor.Variant.Filled" StartIcon="@Icons.Material.Filled.Save" OnClick="Create" Color="Color.Success">Create</MudButton>
+	<RadzenDataGrid @ref=@dataGrid
+					Data="@dataList"
+					TItem="BlogViewModel"
+					Count="@rowCount"
+					AllowPaging="true"
+					PagerHorizontalAlign="HorizontalAlign.Center"
+					AllowSorting="true" PageSize="10" LoadData="@LoadData">
+		<Columns>
+			<RadzenDataGridColumn TItem="BlogViewModel" Title="#" Filterable="false" Sortable="false" TextAlign="TextAlign.Center">
+				<Template Context="data">
+					<MudButton Variant="MudBlazor.Variant.Filled" OnClick="() => Edit(data.Id)" Color="Color.Warning">Edit</MudButton>
+					<MudButton Variant="MudBlazor.Variant.Filled" OnClick="() => Delete(data.Id)" Color="Color.Error">Delete</MudButton>
+				</Template>
+			</RadzenDataGridColumn>
+			<RadzenDataGridColumn TItem="BlogViewModel" Property="Id" Title="Blog ID" />
+			<RadzenDataGridColumn TItem="BlogViewModel" Property="Title" Title="Blog Title" />
+			<RadzenDataGridColumn TItem="BlogViewModel" Property="Author" Title="Blog Author" />
+			<RadzenDataGridColumn TItem="BlogViewModel" Property="Content" Title="Blog Content" />
+		</Columns>
+	</RadzenDataGrid>
 }
 else if (_formType == EnumFormType.Create || _formType == EnumFormType.Edit)
 {
-    <p>@reqModel.Id</p>
-    <RadzenTextBox @bind-Value="@reqModel.Title" />
-    <RadzenTextBox @bind-Value="@reqModel.Author" />
-    <RadzenTextBox @bind-Value="@reqModel.Content" />
+	<p>@reqModel.Id</p>
+	<RadzenTextBox @bind-Value="@reqModel.Title" />
+	<RadzenTextBox @bind-Value="@reqModel.Author" />
+	<RadzenTextBox @bind-Value="@reqModel.Content" />
 
-    <MudButton Variant="MudBlazor.Variant.Outlined" OnClick="Cancel">Cancel</MudButton>
-    @if (_formType == EnumFormType.Create)
-    {
-        <MudButton Variant="MudBlazor.Variant.Filled" StartIcon="@Icons.Material.Filled.Save" OnClick="Save" Color="Color.Success">Save</MudButton>
-    }
-    else if (_formType == EnumFormType.Edit)
-    {
-        <MudButton Variant="MudBlazor.Variant.Filled" StartIcon="@Icons.Material.Filled.Save" OnClick="Update" Color="Color.Success">Update</MudButton>
-    }
+	<MudButton Variant="MudBlazor.Variant.Outlined" OnClick="Cancel">Cancel</MudButton>
+	@if (_formType == EnumFormType.Create)
+	{
+		<MudButton Variant="MudBlazor.Variant.Filled" StartIcon="@Icons.Material.Filled.Save" OnClick="Save" Color="Color.Success">Save</MudButton>
+	}
+	else if (_formType == EnumFormType.Edit)
+	{
+		<MudButton Variant="MudBlazor.Variant.Filled" StartIcon="@Icons.Material.Filled.Save" OnClick="Update" Color="Color.Success">Update</MudButton>
+	}
 }

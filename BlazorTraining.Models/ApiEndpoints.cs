@@ -10,5 +10,7 @@ namespace BlazorTraining.Models
     {
         public static string GetBlogs { get; } = "api/blog/list";
         public static string CreateBlog { get; } = "api/blog/create";
+        public static string UpdateBlog { get; set; } = "api/blog/update";
+       
     }
 }
